@@ -23,6 +23,7 @@
         "bootstrap": "^5.3.6",
         "swiper": "^11.2.8",
         "vue": "^3.5.16",
-        "vue-router": "^4.5.1"
+        "vue-router": "^4.5.1",
+        "ziggy-js": "^2.5.3"
     }
 }
