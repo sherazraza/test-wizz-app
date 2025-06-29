@@ -19,17 +19,32 @@
                         <textarea class="form-control" name="hero_description" rows="3">{{ $home->hero_description ?? '' }}</textarea>
                     </div>
                     @for($i = 1; $i <= 4; $i++)
-                        <div class="mb-3">
-                            <label class="form-label">Image {{ $i }}</label>
-                            <input type="file" class="form-control" name="hero_image_{{ $i }}" accept="image/*">
-                            @php $image = "hero_image_$i"; @endphp
-                            @if(!empty($home->$image))
-                                <div class="mt-2">
-                                    <img src="{{ asset('storage/' . $home->$image) }}" height="80">
-                                </div>
-                            @endif
-                        </div>
-                    @endfor
+    <div class="mb-3">
+        <label class="form-label">
+            {{ $i == 1 ? 'Hero Image' : 'Hero Video ' . ($i - 1) }}
+        </label>
+
+        <input
+            type="file"
+            class="form-control"
+            name="hero_image_{{ $i }}"
+            accept="{{ $i == 1 ? 'image/*' : 'video/*' }}"
+        >
+
+        @php $media = "hero_image_$i"; @endphp
+
+        @if(!empty($home->$media))
+            <div class="mt-2">
+                @if($i == 1)
+                    <img src="{{ asset('storage/' . $home->$media) }}" height="80">
+                @else
+                    <video src="{{ asset('storage/' . $home->$media) }}" height="200px" controls></video>
+                @endif
+            </div>
+        @endif
+    </div>
+@endfor
+
                 </div>
             </div>
 
@@ -125,10 +140,10 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Image</label>
-                        <input type="file" class="form-control" name="video_editing_image" accept="image/*">
+                        <input type="file" class="form-control" name="video_editing_image" accept="video/*">
                         @if(!empty($home->video_editing_image))
                             <div class="mt-2">
-                                <img src="{{ asset('storage/' . $home->video_editing_image) }}" height="80">
+                                <video src="{{ asset('storage/' . $home->video_editing_image) }}" height="200px" controls></video>
                             </div>
                         @endif
                     </div>
@@ -154,7 +169,7 @@
                             <div class="row mt-2">
                                 @foreach(json_decode($home->cgi_videos, true) as $vid)
                                     <div class="col-md-4">
-                                        <video controls height="100" class="mb-2">
+                                        <video controls height="200px" class="mb-2">
                                             <source src="{{ asset('storage/' . $vid) }}" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>

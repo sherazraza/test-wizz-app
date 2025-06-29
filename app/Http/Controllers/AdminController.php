@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\CGIHowItWorks;
 use App\Models\CGISection;
 use DB;
@@ -65,8 +66,37 @@ class AdminController extends Controller
     }
     public function categories()
     {
-        return view('admin.pages.categories');
+        $categories = Category::all();
 
+        return view('admin.pages.categories', compact('categories'));
+
+    }
+
+    public function storeCat(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Category added successfully!');
+    }
+
+    public function updateCat(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Category updated successfully!');
     }
 
     public function storeOrUpdate(Request $request)

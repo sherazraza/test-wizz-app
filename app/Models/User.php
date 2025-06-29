@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'privacy_policy',
+        'next_upload',
+        'edit_image_time',
+        'edit_image_per_year',
     ];
 
     /**

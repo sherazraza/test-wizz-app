@@ -1,10 +1,10 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     email: {
@@ -20,13 +20,13 @@ const props = defineProps({
 const form = useForm({
     token: props.token,
     email: props.email,
-    password: '',
-    password_confirmation: '',
+    password: "",
+    password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route('password.store'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    form.post(route("password.store"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
 </script>
@@ -36,6 +36,15 @@ const submit = () => {
         <Head title="Reset Password" />
 
         <form @submit.prevent="submit">
+            <div class="mb-4 text-lg font-bold text-center text-gray-600">
+                <img
+                    src="https://ppp.bzmgraphics.com/images/app-logo.png"
+                    class="h-16 mx-auto"
+                    alt=""
+                />
+                <br />
+                <b>Forgot Password</b>
+            </div>
             <div>
                 <InputLabel for="email" value="Email" />
 
@@ -68,7 +77,10 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <InputLabel
+                    for="password_confirmation"
+                    value="Confirm Password"
+                />
 
                 <TextInput
                     id="password_confirmation"
@@ -79,13 +91,20 @@ const submit = () => {
                     autocomplete="new-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.password_confirmation"
+                />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <button
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                    class="block w-full px-4 py-3 font-medium text-white bg-[#92C46A] rounded-lg shadow hover:bg-[#7aad59] focus:bg-[#7aad59] focus:outline-none focus:ring-2 focus:ring-[#7aad59] focus:ring-offset-2"
+                >
                     Reset Password
-                </PrimaryButton>
+                </button>
             </div>
         </form>
     </GuestLayout>

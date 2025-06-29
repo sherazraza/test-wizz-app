@@ -14,10 +14,10 @@
                         <textarea name="main_description" class="form-control" rows="3">{{ $section->main_description ?? '' }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Image</label>
-                        <input type="file" class="form-control" name="main_image" accept="image/*">
+                        <label class="form-label">Video</label>
+                        <input type="file" class="form-control" name="main_image" accept="video/*">
                         @if(!empty($section->main_image))
-                            <img src="{{ asset('storage/' . $section->main_image) }}" alt="Main Image" class="img-thumbnail mt-2" width="200">
+                            <video src="{{ asset('storage/' . $section->main_image) }}" alt="Main Image" class="img-thumbnail mt-2" width="200" controls></video>
                         @endif
                     </div>
                 </div>
@@ -32,10 +32,10 @@
                         <textarea name="video_service_description" class="form-control" rows="3">{{ $section->video_service_description ?? '' }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Image</label>
-                        <input type="file" class="form-control" name="video_service_image" accept="image/*">
+                        <label class="form-label">Video</label>
+                        <input type="file" class="form-control" name="video_service_image" accept="video/*">
                         @if(!empty($section->video_service_image))
-                            <img src="{{ asset('storage/' . $section->video_service_image) }}" alt="Service Image" class="img-thumbnail mt-2" width="200">
+                            <video src="{{ asset('storage/' . $section->video_service_image) }}" alt="Service Image" class="img-thumbnail mt-2" width="200" controls></video>
                         @endif
                     </div>
                 </div>
@@ -77,10 +77,10 @@
                         <textarea name="reliable_description" class="form-control" rows="3">{{ $section->reliable_description ?? '' }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Image</label>
-                        <input type="file" class="form-control" name="reliable_image" accept="image/*">
+                        <label class="form-label">Video</label>
+                        <input type="file" class="form-control" name="reliable_image" accept="video/*">
                         @if(!empty($section->reliable_image))
-                            <img src="{{ asset('storage/' . $section->reliable_image) }}" alt="Reliable Image" class="img-thumbnail mt-2" width="200">
+                            <video src="{{ asset('storage/' . $section->reliable_image) }}" alt="Reliable Image" class="img-thumbnail mt-2" width="200" controls></video>
                         @endif
                     </div>
                 </div>

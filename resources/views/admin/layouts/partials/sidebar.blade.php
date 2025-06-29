@@ -27,6 +27,7 @@
                             <a href="{{route('admin.contact')}}" class="dropdown-item">Contact Us</a>
                             <a href="{{route('admin.imageEditing')}}" class="dropdown-item">Image Editing Pricing</a>
                             <a href="{{route('admin.videoPricing')}}" class="dropdown-item">Video Editing Pricing</a>
+                            <a href="{{route('admin.allportfolios')}}" class="dropdown-item">Portfolios</a>
                         </div>
                     </div>
                    <!--  <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>

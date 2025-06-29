@@ -1,8 +1,8 @@
 <template>
     <div v-if="mounted" class="my-5 container">
-        <p class="text-center mb-4">
+        <!-- <p class="text-center mb-4">
             From Startups to the World’s Largest Companies
-        </p>
+        </p> -->
         <swiper
             :modules="[Autoplay]"
             :slides-per-view="4"
@@ -21,7 +21,7 @@
                 :key="index"
                 class="d-flex justify-content-center align-items-center"
             >
-                <img :src="logo" alt="Client Logo" height="30" />
+                <img :src="logo" alt="Client Logo" height="20px" />
             </swiper-slide>
         </swiper>
     </div>
@@ -40,14 +40,9 @@ onMounted(() => {
     mounted.value = true;
 });
 
-const logos = [
-    "https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711965534%2Fimages%2Fbzm-clients%2Fhudsons-bay.png&w=1920&q=75",
-    "https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711965535%2Fimages%2Fbzm-clients%2Fsaks-fifth-avenue.png&w=1920&q=75",
-    "https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087629%2Fimages%2Fbzm-clients%2Flord-taylor.png&w=1920&q=75",
-    "https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711965535%2Fimages%2Fbzm-clients%2Fsaks-fifth-avenue.png&w=1920&q=75",
-    "https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087621%2Fimages%2Fbzm-clients%2Fjr-dunn.png&w=1920&q=75",
-    "https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087621%2Fimages%2Fbzm-clients%2Fgindi-photography.png&w=1920&q=75",
-];
+const props = defineProps({
+    logos: Array,
+});
 </script>
 
 <style scoped>

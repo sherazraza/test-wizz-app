@@ -7,6 +7,10 @@ export default {
     components: {
         MainLayout, // ✅ Register here
     },
+    props: {
+        locations: Array,
+        contact: Object,
+    },
 };
 </script>
 
@@ -222,7 +226,7 @@ export default {
                                         <a
                                             class="self-center"
                                             href="mailto:hello@bzmgraphics.com"
-                                            >hello@bzmgraphics.com</a
+                                            >{{ contact?.email }}</a
                                         >
                                     </div>
                                     <div class="flex h-fit gap-3">
@@ -259,75 +263,30 @@ export default {
                                     >
                                 </h2>
                                 <p class="mt-5 textfont">
-                                    If you would like more information or would
-                                    like to talk to us about how we could help
-                                    your business, fill out the form<br />above
-                                    or email us at
-                                    <span
-                                        ><a
-                                            class="font-bold text-brand underline"
-                                            href="mailto:hello@bzmgraphics.com"
-                                            >hello@bzmgraphics.com</a
-                                        ></span
-                                    >
-                                    and we'll get straight back to you. for
-                                    inquiries and collaborations.
+                                    {{ contact?.email_description }}
                                 </p>
                             </div>
                             <div
                                 class="grid grid-cols-1 gap-10 py-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-20"
                             >
-                                <div class="space-sm">
+                                <div
+                                    v-for="(item, index) in locations"
+                                    :key="index"
+                                    class="space-sm"
+                                >
                                     <h2
                                         class="flex items-center gap-2 text-lg font-bold"
                                     >
-                                        Dhaka, BD
+                                        {{ item.title }}
                                     </h2>
                                     <p class="">
-                                        Mahfuza Tower, 36/37 Probal Housing Ring
-                                        Road, Dhaka - 1207
+                                        {{ item.description }}
                                     </p>
                                     <p>
                                         <a
                                             class="block font-bold text-brand underline"
                                             href="tel:+88 02 55020348"
-                                            >+88 02 55020348</a
-                                        >
-                                    </p>
-                                </div>
-                                <div class="space-sm">
-                                    <h2
-                                        class="flex items-center gap-2 text-lg font-bold"
-                                    >
-                                        Dubai, UAE
-                                    </h2>
-                                    <p class="">
-                                        The Burjuman، Business Tower - Sheikh
-                                        Zayed Street, UAE.
-                                    </p>
-                                    <p>
-                                        <a
-                                            class="block font-bold text-brand underline"
-                                            href="tel:+971 58 571 8686"
-                                            >+971 58 571 8686</a
-                                        >
-                                    </p>
-                                </div>
-                                <div class="space-sm">
-                                    <h2
-                                        class="flex items-center gap-2 text-lg font-bold"
-                                    >
-                                        Texas, USA
-                                    </h2>
-                                    <p class="">
-                                        5900 Balcones Drive, Suite 100, Austin,
-                                        TX 78731, Texas USA.
-                                    </p>
-                                    <p>
-                                        <a
-                                            class="block font-bold text-brand underline"
-                                            href="tel:+1 737 307 3852"
-                                            >+1 737 307 3852</a
+                                            >{{ item.phone }}</a
                                         >
                                     </p>
                                 </div>

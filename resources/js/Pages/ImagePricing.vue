@@ -8,6 +8,10 @@ export default {
     components: {
         MainLayout, // ✅ Register here
     },
+    props: {
+        pricing: Object,
+        services: Array,
+    },
 };
 </script>
 
@@ -61,11 +65,7 @@ export default {
                     <p
                         class="text-sm !leading-6 md:text-lg lg:!leading-7 py-10 text-center font-semibold lg:py-14"
                     >
-                        At bZm we always try to offer a solution within your
-                        budget. Try the below calculator to get an Idea about
-                        our Starting price. However, the price will vary
-                        depending on the Volume, Consistency, Turnaround time
-                        etc. Still confused? Simply reach out to us.
+                        {{ pricing?.description }}
                     </p>
                     <div
                         class="grid grid-cols-1 gap-10 bg-white p-4 py-10 md:gap-0 md:p-10 lg:grid-cols-2 lg:p-10"
@@ -83,6 +83,8 @@ export default {
                                     >
                                 </p>
                                 <li
+                                    v-for="(service, index) in services"
+                                    :key="index"
                                     class="mb-4 flex !w-full items-center justify-between gap-2"
                                 >
                                     <button class="flex items-center gap-2">
@@ -101,158 +103,17 @@ export default {
                                         <p
                                             class="text-sm !leading-6 md:text-lg lg:!leading-7"
                                         >
-                                            Ghost Mannequin
+                                            {{ service.name }}
                                         </p>
                                     </button>
                                     <p
                                         class="text-sm !leading-6 md:text-lg lg:!leading-7 text-gray-600"
                                     >
-                                        $0.60
-                                    </p>
-                                </li>
-                                <li
-                                    class="mb-4 flex !w-full items-center justify-between gap-2"
-                                >
-                                    <button class="flex items-center gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                            data-slot="icon"
-                                            class="size-6 rounded-full border border-brand fill-brand"
-                                        >
-                                            <path
-                                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
-                                            ></path>
-                                        </svg>
-                                        <p
-                                            class="text-sm !leading-6 md:text-lg lg:!leading-7"
-                                        >
-                                            Clipping Path
-                                        </p>
-                                    </button>
-                                    <p
-                                        class="text-sm !leading-6 md:text-lg lg:!leading-7 text-gray-600"
-                                    >
-                                        $0.15
-                                    </p>
-                                </li>
-                                <li
-                                    class="mb-4 flex !w-full items-center justify-between gap-2"
-                                >
-                                    <button class="flex items-center gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                            data-slot="icon"
-                                            class="size-6 rounded-full border border-brand fill-brand"
-                                        >
-                                            <path
-                                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
-                                            ></path>
-                                        </svg>
-                                        <p
-                                            class="text-sm !leading-6 md:text-lg lg:!leading-7"
-                                        >
-                                            Shadow &amp; Reflection
-                                        </p>
-                                    </button>
-                                    <p
-                                        class="text-sm !leading-6 md:text-lg lg:!leading-7 text-gray-600"
-                                    >
-                                        $0.10
-                                    </p>
-                                </li>
-                                <li
-                                    class="mb-4 flex !w-full items-center justify-between gap-2"
-                                >
-                                    <button class="flex items-center gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                            data-slot="icon"
-                                            class="size-6 rounded-full border border-brand fill-brand"
-                                        >
-                                            <path
-                                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
-                                            ></path>
-                                        </svg>
-                                        <p
-                                            class="text-sm !leading-6 md:text-lg lg:!leading-7"
-                                        >
-                                            Color Correction
-                                        </p>
-                                    </button>
-                                    <p
-                                        class="text-sm !leading-6 md:text-lg lg:!leading-7 text-gray-600"
-                                    >
-                                        $0.60
+                                        ${{ service.price }}
                                     </p>
                                 </li>
                             </div>
-                            <div class="flex w-full flex-col justify-between">
-                                <li
-                                    class="mb-4 flex !w-full items-center justify-between gap-2"
-                                >
-                                    <button class="flex items-center gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                            data-slot="icon"
-                                            class="size-6 rounded-full border border-brand fill-brand"
-                                        >
-                                            <path
-                                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
-                                            ></path>
-                                        </svg>
-                                        <p
-                                            class="text-sm !leading-6 md:text-lg lg:!leading-7"
-                                        >
-                                            Basic Retouch
-                                        </p>
-                                    </button>
-                                    <p
-                                        class="text-sm !leading-6 md:text-lg lg:!leading-7 text-gray-600"
-                                    >
-                                        $0.30
-                                    </p>
-                                </li>
-                                <li
-                                    class="mb-4 flex !w-full items-center justify-between gap-2"
-                                >
-                                    <button class="flex items-center gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                            data-slot="icon"
-                                            class="size-6 rounded-full border border-brand fill-brand"
-                                        >
-                                            <path
-                                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"
-                                            ></path>
-                                        </svg>
-                                        <p
-                                            class="text-sm !leading-6 md:text-lg lg:!leading-7"
-                                        >
-                                            Advance Retouch
-                                        </p>
-                                    </button>
-                                    <p
-                                        class="text-sm !leading-6 md:text-lg lg:!leading-7 text-gray-600"
-                                    >
-                                        $0.75
-                                    </p>
-                                </li>
-                            </div>
+
                             <div
                                 class="space-md mt-10 flex flex-col items-center justify-center lg:mt-0 d-lg-none"
                             >
@@ -262,7 +123,7 @@ export default {
                                     </h2>
                                     <span
                                         class="text-3xl font-bold text-brand lg:text-6xl"
-                                        >$0.40</span
+                                        >${{ pricing?.base_price }}</span
                                     >
                                 </div>
                                 <div class="pt-2">
@@ -331,7 +192,7 @@ export default {
                                     Base price
                                     <span
                                         class="text-3xl font-semibold text-brand"
-                                        >$0.40</span
+                                        >${{ pricing?.base_price }}</span
                                     >
                                 </h2>
                                 <p
@@ -345,9 +206,7 @@ export default {
                                             href="/service/background-remove"
                                             >Background removal
                                         </a></span
-                                    >, Alignment, Cropping, Resizing,
-                                    Compression, File format, Color profile,
-                                    DPI, File size, Meta-data and Watermarks.
+                                    >{{ pricing?.base_price_description }}
                                 </p>
                             </div>
                             <div
@@ -359,7 +218,7 @@ export default {
                                     </h2>
                                     <span
                                         class="text-3xl font-bold text-brand lg:text-6xl"
-                                        >$0.40</span
+                                        >${{ pricing?.base_price }}</span
                                     >
                                 </div>
                                 <div class="pt-2 mt-3">

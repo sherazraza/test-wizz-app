@@ -136,12 +136,12 @@ import { Link } from "@inertiajs/vue3";
                 </div>
 
                 <div>
-                    <a
+                    <Link
                         class="nav-link d-flex gap-2 text-dark d-flex align-items-center gap-2"
-                        href="#"
+                        :href="route('user.portfolio')"
                     >
                         <span>Portfolios</span>
-                    </a>
+                    </Link>
                 </div>
 
                 <!-- Company -->
@@ -248,14 +248,22 @@ import { Link } from "@inertiajs/vue3";
 
             <!-- Right Side: Button + Language -->
             <div class="flex items-center gap-4">
-                <button
+                <a
+                    :href="route('login')"
                     class="bg-green-500 text-white text-sm px-4 py-2 rounded hover:bg-green-600"
                 >
                     Free Trial
-                </button>
+                </a>
+
+                <a
+                    :href="route('user.dashboard')"
+                    class="bg-green-500 text-white text-sm px-4 py-2 rounded hover:bg-green-600"
+                >
+                    Dashboard
+                </a>
 
                 <!-- Language Dropdown -->
-                <div class="relative">
+                <!-- <div class="relative">
                     <select
                         class="pl-8 pr-3 py-2 border border-gray-300 rounded text-sm appearance-none bg-white bg-no-repeat bg-left"
                         style="
@@ -283,7 +291,7 @@ import { Link } from "@inertiajs/vue3";
                             Deutsch
                         </option>
                     </select>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>

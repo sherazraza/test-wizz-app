@@ -8,6 +8,10 @@ export default {
         MainLayout, // ✅ Register here
         LogoSlider,
     },
+    props: {
+        home: String,
+        locations: Array,
+    },
 };
 </script>
 
@@ -29,10 +33,10 @@ export default {
                             loop
                             playsinline
                             class="w-100 img-fluid"
-                            style="object-fit: cover"
+                            style="object-fit: cover; height: 500px"
                         >
                             <source
-                                src="https://res.cloudinary.com/dnroxwdfm/video/upload/v1727176901/videos/nike-model_o7qdlk_c3ouvh.mp4"
+                                :src="home?.hero_image_2"
                                 type="video/mp4"
                             />
                         </video>
@@ -43,8 +47,7 @@ export default {
                         class="col-md-5 relative text-center text-md-start d-flex flex-column justify-content-center align-items-start"
                     >
                         <h1 class="fw-bold display-5 mb-3">
-                            Visual Contents for <br />
-                            E-Commerce & Brands
+                            {{ home?.hero_title ?? "" }}
                         </h1>
                         <div
                             class="absolute right-5 top-5 hidden size-[120px] bg-black/10 lg:block 2xl:size-[160px]"
@@ -67,11 +70,11 @@ export default {
                                     color: transparent;
                                 "
                                 sizes="(max-width: 768px) 50%, 33%"
-                                src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711094853%2Fimages%2Flipstick_ijtj8q.png&w=1920&q=75"
+                                :src="home?.hero_image_1"
                             />
                         </div>
                         <p class="lead mb-4">
-                            Best quality Image Editing, Video Editing & CGI.
+                            {{ home?.hero_description ?? "" }}
                         </p>
 
                         <div
@@ -101,7 +104,7 @@ export default {
                                 sizes="(max-width: 768px) 50%, 33%"
                             >
                                 <source
-                                    src="https://res.cloudinary.com/dnroxwdfm/video/upload/q_auto/f_auto:video/shoe_rmubuc?_s=vp-1.11.1"
+                                    :src="home?.hero_image_3"
                                     type="video/mp4"
                                 />
                             </video>
@@ -162,7 +165,7 @@ export default {
                             style="object-fit: cover; height: 500px"
                         >
                             <source
-                                src="https://res.cloudinary.com/dnroxwdfm/video/upload/q_auto/f_auto:video/v1/test/portrait-model-v2_pfh3eu?_s=vp-1.11.1"
+                                :src="home?.hero_image_4"
                                 type="video/mp4"
                             />
                         </video>
@@ -187,13 +190,14 @@ export default {
         <!-- Logos Section - THIS SHOULD BE OUTSIDE hero-section -->
         <section class="container text-center my-5">
             <h1 class="text-4xl">
-                From Startups to the World's <br />
-                Largest Companies
+                {{ home?.client_title ?? "" }}
             </h1>
+            <p>
+                {{ home?.client_description ?? "" }}
+            </p>
 
-            <h1>From Startups</h1>
             <div class="">
-                <LogoSlider />
+                <LogoSlider :logos="home?.client_images" />
             </div>
         </section>
 
@@ -325,7 +329,9 @@ export default {
                     </h5>
                     <div class="z-10 grid grid-cols-2 gap-14">
                         <div class="col-span-1 space-y-4 xl:text-start">
-                            <p class="text-3xl font-medium lg:text-4xl">12+</p>
+                            <p class="text-3xl font-medium lg:text-4xl">
+                                {{ home?.brands ?? "" }}+
+                            </p>
                             <hr />
                             <p
                                 class="text-xs uppercase tracking-wide text-gray-500 sm:text-xs xl:text-sm 2xl:text-sm"
@@ -334,7 +340,9 @@ export default {
                             </p>
                         </div>
                         <div class="col-span-1 space-y-4 xl:text-start">
-                            <p class="text-3xl font-medium lg:text-4xl">250+</p>
+                            <p class="text-3xl font-medium lg:text-4xl">
+                                {{ home?.employees ?? "" }}+
+                            </p>
                             <hr />
                             <p
                                 class="text-xs uppercase tracking-wide text-gray-500 sm:text-xs xl:text-sm 2xl:text-sm"
@@ -343,7 +351,9 @@ export default {
                             </p>
                         </div>
                         <div class="col-span-1 space-y-4 xl:text-start">
-                            <p class="text-3xl font-medium lg:text-4xl">7500</p>
+                            <p class="text-3xl font-medium lg:text-4xl">
+                                {{ home?.sft_space ?? "" }}
+                            </p>
                             <hr />
                             <p
                                 class="text-xs uppercase tracking-wide text-gray-500 sm:text-xs xl:text-sm 2xl:text-sm"
@@ -352,7 +362,9 @@ export default {
                             </p>
                         </div>
                         <div class="col-span-1 space-y-4 xl:text-start">
-                            <p class="text-3xl font-medium lg:text-4xl">7M+</p>
+                            <p class="text-3xl font-medium lg:text-4xl">
+                                {{ home?.delivered_photos ?? "" }}+
+                            </p>
                             <hr />
                             <p
                                 class="text-xs uppercase tracking-wide text-gray-500 sm:text-xs xl:text-sm 2xl:text-sm"
@@ -361,8 +373,6 @@ export default {
                             </p>
                         </div>
                     </div>
-                    <h6>250+</h6>
-                    <p>Specialist Editors</p>
                 </div>
                 <!-- <div class="col-md-4">
                     <h6>7500</h6>
@@ -394,7 +404,7 @@ export default {
                                     color: transparent;
                                 "
                                 sizes="(max-width: 768px) 50%, 33%"
-                                src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711085016%2Fimages%2Fusers%2Ffrancois-thibault_khuwra.png&w=1920&q=75"
+                                :src="home?.review_image"
                             />
                         </div>
                     </div>
@@ -425,9 +435,7 @@ export default {
                     <p
                         class="text-center text-base font-medium text-gray-800 xl:text-lg 2xl:text-xl"
                     >
-                        bZm Graphics has been a very good help to speed up the
-                        day to day process at our Studio. Very dedicated and
-                        always ready to take challenges.
+                        {{ home?.review_text ?? "" }}
                     </p>
                     <div class="relative size-20">
                         <img
@@ -456,12 +464,12 @@ export default {
                     <p
                         class="text-base font-bold sm:text-base xl:text-2xl 2xl:text-2xl"
                     >
-                        François Thibault
+                        {{ home?.review_name ?? "" }}
                     </p>
                     <p
                         class="text-xs text-gray-500 sm:text-xs xl:text-xl 2xl:text-xl"
                     >
-                        Creative Director
+                        {{ home?.review_designation ?? "" }}
                     </p>
                 </div>
                 <div class="flex justify-center">
@@ -484,7 +492,7 @@ export default {
                                 color: transparent;
                             "
                             sizes="(max-width: 768px) 50%, 33%"
-                            src="https://www.bzmgraphics.com/_next/image?url=%2Fhome%2Fcompany-logo.webp&w=1920&q=100"
+                            :src="home?.company_logo"
                         />
                     </div>
                 </div>
@@ -601,10 +609,7 @@ export default {
                     playsinline=""
                     title="Fitness Model"
                 >
-                    <source
-                        src="https://res.cloudinary.com/dnroxwdfm/video/upload/videos/fitness-model_v3uu4g"
-                        type="video/mp4"
-                    />
+                    <source :src="home?.video_editing_image" type="video/mp4" />
                     <track
                         src="https://res.cloudinary.com/dnroxwdfm/video/upload/videos/fitness-model_v3uu4g"
                         kind="subtitles"
@@ -629,11 +634,7 @@ export default {
                 <p
                     class="text-sm !leading-6 text-grey md:text-lg lg:!leading-7"
                 >
-                    Videos are the real story teller. If placed at the perfect
-                    place a video can create a lasting impact on it's viewers.
-                    Product videos are not exceptional.Our video editors are
-                    well skilled to make your video go loud and Speaks what you
-                    want it to.
+                    {{ home?.video_editing_description ?? "" }}
                 </p>
                 <div class="pt-4">
                     <a
@@ -694,57 +695,24 @@ export default {
                 <p
                     class="text-sm !leading-6 text-grey mt-4 md:text-lg lg:!leading-7 mx-auto max-w-2xl"
                 >
-                    We model, visualize and contextualize products to increase
-                    sales, reduce costs and drive customer engagement and
-                    conversions.
+                    {{ home?.cgi_description ?? "" }}
                 </p>
             </div>
         </div>
 
         <div
+            v-if="home?.cgi_videos && home?.cgi_videos.length"
             class="container px-5 px-5 grid min-h-[500px] grid-cols-1 gap-10 xl:grid-cols-2"
         >
+            <!-- <div v-if="home?.cgi_videos && home?.cgi_videos.length"> -->
             <video
-                class="max-h-[80vh] w-full overflow-hidden h-full object-cover"
-                preload="none"
-                autoplay=""
-                loop=""
-                muted=""
-                playsinline=""
-                title="3D Headphone"
-            >
-                <source
-                    src="https://res.cloudinary.com/dnroxwdfm/video/upload/v1727176898/videos/headphone_1080p_xmdwio.mp4"
-                    type="video/mp4"
-                />
-                <track
-                    src="https://res.cloudinary.com/dnroxwdfm/video/upload/v1727176898/videos/headphone_1080p_xmdwio.mp4"
-                    kind="subtitles"
-                    srclang="en"
-                    label="English"
-                />
-                Your browser does not support the video tag.</video
-            ><video
-                class="max-h-[80vh] w-full overflow-hidden h-full object-cover"
-                preload="none"
-                autoplay=""
-                loop=""
-                muted=""
-                playsinline=""
-                title="CGI Shoes"
-            >
-                <source
-                    src="https://res.cloudinary.com/dnroxwdfm/video/upload/v1727176897/videos/3d_video_1080p_p6yiuw.mp4"
-                    type="video/mp4"
-                />
-                <track
-                    src="https://res.cloudinary.com/dnroxwdfm/video/upload/v1727176897/videos/3d_video_1080p_p6yiuw.mp4"
-                    kind="subtitles"
-                    srclang="en"
-                    label="English"
-                />
-                Your browser does not support the video tag.
-            </video>
+                v-for="(video, index) in home?.cgi_videos"
+                :key="index"
+                :src="video"
+                controls
+                style="width: 100%; margin-bottom: 20px"
+            ></video>
+            <!-- </div> -->
         </div>
         <br /><br />
         <div
@@ -814,19 +782,22 @@ export default {
                         >Web conferencing details provided upon confirmation.
                     </p>
                 </div>
-                <div>
-                    <link
-                        href="https://assets.calendly.com/assets/external/widget.css"
-                        rel="stylesheet"
-                    /><button
-                        class="rounded bg-brand px-5 py-3 mt-4 font-bold text-white transition hover:bg-[#80bb50]"
+                <div class="mt-3">
+                    <br />
+                    <a
+                        :href="route('contact')"
+                        class="rounded bg-brand px-5 mt-5 py-3 mt-4 font-bold text-white transition hover:bg-[#80bb50]"
                     >
                         Book a Meeting
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-10 lg:grid-cols-3">
-                <div class="flex gap-3">
+                <div
+                    v-for="(item, index) in locations"
+                    :key="index"
+                    class="flex gap-3"
+                >
                     <div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -851,83 +822,14 @@ export default {
                         </svg>
                     </div>
                     <div>
-                        <p class="mb-4 font-bold text-white">Dhaka, BD</p>
-                        <p class="text-white">
-                            Mahfuza Tower, 36/37 Probal Housing Ring Road, Dhaka
-                            - 1207
+                        <p class="mb-4 font-bold text-white">
+                            {{ item.title }}
                         </p>
                         <p class="text-white">
-                            Phone: <span>+88 02 55020348</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="flex gap-3">
-                    <div>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                            data-slot="icon"
-                            class="mx-auto size-8 stroke-brand"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                            ></path>
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                            ></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="mb-4 font-semibold text-white">Dubai, UAE</p>
-                        <p class="text-white">
-                            The Burjuman، Business Tower - Sheikh Zayed Street,
-                            UAE.
+                            {{ item.description }}
                         </p>
                         <p class="text-white">
-                            Phone: <span>+971 58 571 8686</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="flex gap-3">
-                    <div>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                            data-slot="icon"
-                            class="mx-auto size-8 stroke-brand"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                            ></path>
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                            ></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="mb-4 font-semibold text-white">Texas, USA</p>
-                        <p class="text-white">
-                            5900 Balcones Drive, Suite 100, Austin, TX 78731,
-                            Texas USA.
-                        </p>
-                        <p class="text-white">
-                            Phone: <span>+1 737 307 3852</span>
+                            Phone: <span>{{ item.phone }}</span>
                         </p>
                     </div>
                 </div>

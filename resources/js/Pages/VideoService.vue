@@ -8,6 +8,10 @@ export default {
     components: {
         MainLayout, // ✅ Register here
     },
+    props: {
+        section: Object,
+        services: Array,
+    },
 };
 </script>
 
@@ -64,10 +68,7 @@ export default {
                                     <p
                                         class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 basis-1/4"
                                     >
-                                        Video Post-production for Ecommerce,
-                                        Product videographers, and Brands.
-                                        Perfectly edited Videos, ready within 24
-                                        hours.
+                                        {{ section?.main_description }}
                                     </p>
                                     <h2
                                         class="text-[40px] font-medium leading-tight md:text-[83px]"
@@ -89,16 +90,12 @@ export default {
                                     "
                                     data-vimeo-initialized="true"
                                 >
-                                    <iframe
-                                        src="https://player.vimeo.com/video/860908863?title=0&amp;byline=0&amp;portrait=0&amp;playsinline=0&amp;muted=1&amp;autoplay=1&amp;autopause=0&amp;controls=0&amp;loop=1&amp;app_id=122963"
-                                        width="240"
-                                        height="300"
-                                        frameborder="0"
-                                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                        title="video"
-                                        data-ready="true"
+                                    <video
+                                        :src="section?.main_image"
+                                        autoplay
+                                        muted
                                         style="width: 100%; height: 100%"
-                                    ></iframe>
+                                    ></video>
                                 </div>
                             </div>
                             <div
@@ -266,16 +263,15 @@ export default {
                                 "
                                 data-vimeo-initialized="true"
                             >
-                                <iframe
-                                    src="https://player.vimeo.com/video/884765174?title=0&amp;byline=0&amp;portrait=0&amp;playsinline=0&amp;muted=1&amp;autoplay=1&amp;autopause=0&amp;controls=0&amp;loop=1&amp;app_id=122963"
-                                    width="240"
-                                    height="240"
+                                <video
+                                    :src="section?.video_service_image"
                                     frameborder="0"
-                                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                    autoplay
+                                    muted
                                     title="hero-video"
                                     data-ready="true"
                                     style="width: 100%; height: 100%"
-                                ></iframe>
+                                ></video>
                             </div>
                         </div>
                     </div>
@@ -294,12 +290,7 @@ export default {
                         <p
                             class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 !text-white"
                         >
-                            We offer top of the line, fine-tuned and a wide
-                            range of Video Editing services, that allow you to
-                            choose and customize your Video Post-Production
-                            project. Besides that, We offer Fast Turnaround
-                            time, Guaranteed quality every time, Very
-                            Competitive price and a FREE TRIAL.
+                            {{ section?.video_service_description }}
                         </p>
                         <div class="py-4">
                             <a
@@ -365,153 +356,24 @@ export default {
                             <p
                                 class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 p-4"
                             >
-                                Product Video Editing that is designed to serve
-                                everyone from an e-commerce to big brands who
-                                love to stand out of the crowd.
+                                {{ section?.services_description }}
                             </p>
                         </div>
                     </div>
                     <div
+                        v-for="(service, index) in services"
+                        :key="index"
                         class="mb-8 grid grid-cols-1 p-3 place-items-center gap-4 border-t pt-8 lg:grid-cols-3"
                     >
                         <h3
                             class="col-span-1 font-semibold text-3xl 2xl:text-[30px]"
                         >
-                            E-commerce Video Editing Services Online
+                            {{ service.title }}
                         </h3>
                         <p
                             class="servicetext md:text-lg lg:!leading-7 col-span-1 mt-3 lg:text-start"
                         >
-                            Better Videos Sales More and narrow the gap between
-                            physical and Online shopping. If you are an Amazon
-                            seller, E-commerce business, Clothing brand or a
-                            product videographer, our eCommerce video editing
-                            services online are designed to smoothly serve your
-                            day to day operations.
-                        </p>
-                        <a
-                            target=""
-                            rel="noopener noreferrer"
-                            class="group relative inline-flex w-fit items-center justify-center overflow-hidden py-6 pl-6 pr-12 font-semibold transition-all duration-150 ease-in-out hover:pl-12 hover:pr-6 bg-black text-white"
-                            href="https://upload.bzmgraphics.com/sign-up"
-                            ><span
-                                class="absolute bottom-0 left-0 h-full w-1 bg-brand transition-all duration-300 ease-in-out group-hover:w-full"
-                            ></span
-                            ><span
-                                class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12"
-                                ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    aria-hidden="true"
-                                    data-slot="icon"
-                                    class="h-6 w-6"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                        clip-rule="evenodd"
-                                    ></path></svg></span
-                            ><span
-                                class="absolute left-0 -translate-x-12 pl-2.5 duration-200 ease-out group-hover:translate-x-0"
-                                ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    aria-hidden="true"
-                                    data-slot="icon"
-                                    class="h-6 w-6"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                        clip-rule="evenodd"
-                                    ></path></svg></span
-                            ><span
-                                class="relative uppercase transition-colors duration-200 ease-in-out"
-                                >Free Trial</span
-                            ></a
-                        >
-                    </div>
-                    <div
-                        class="mb-8 grid grid-cols-1 p-3 place-items-center gap-4 border-t pt-8 lg:grid-cols-3"
-                    >
-                        <h3
-                            class="col-span-1 font-semibold text-3xl 2xl:text-[30px]"
-                        >
-                            Video Background Removal
-                        </h3>
-                        <p
-                            class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 col-span-1 mt-3 lg:text-start"
-                        >
-                            Let us Remove the background from the video you just
-                            shot. Engage your viewer to the selling product
-                            only. Bring your Products to Life and top of the
-                            focusing point by using our video background removal
-                            service. Our team of expert video editors are just
-                            one click away.
-                        </p>
-                        <a
-                            target=""
-                            rel="noopener noreferrer"
-                            class="group relative inline-flex w-fit items-center justify-center overflow-hidden py-6 pl-6 pr-12 font-semibold transition-all duration-150 ease-in-out hover:pl-12 hover:pr-6 bg-black text-white"
-                            href="https://upload.bzmgraphics.com/sign-up"
-                            ><span
-                                class="absolute bottom-0 left-0 h-full w-1 bg-brand transition-all duration-300 ease-in-out group-hover:w-full"
-                            ></span
-                            ><span
-                                class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12"
-                                ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    aria-hidden="true"
-                                    data-slot="icon"
-                                    class="h-6 w-6"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                        clip-rule="evenodd"
-                                    ></path></svg></span
-                            ><span
-                                class="absolute left-0 -translate-x-12 pl-2.5 duration-200 ease-out group-hover:translate-x-0"
-                                ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    aria-hidden="true"
-                                    data-slot="icon"
-                                    class="h-6 w-6"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                        clip-rule="evenodd"
-                                    ></path></svg></span
-                            ><span
-                                class="relative uppercase transition-colors duration-200 ease-in-out"
-                                >Free Trial</span
-                            ></a
-                        >
-                    </div>
-                    <div
-                        class="mb-8 grid grid-cols-1 place-items-center p-4 gap-4 border-t pt-8 lg:grid-cols-3"
-                    >
-                        <h3
-                            class="col-span-1 font-semibold text-3xl 2xl:text-[30px]"
-                        >
-                            Video Color Grading
-                        </h3>
-                        <p
-                            class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 col-span-1 mt-3 lg:text-start"
-                        >
-                            Video is a great way to express and grab people's
-                            attention. While doing that, Color grading plays a
-                            vital role in the process.Color Grading is a process
-                            of adding creative color effects to a video to make
-                            it stand out which our expert video editors can
-                            handle with ease.
+                            {{ service.description }}
                         </p>
                         <a
                             target=""
@@ -575,12 +437,7 @@ export default {
                         <p
                             class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 text-center !text-white lg:ml-[25%] text-lg-start"
                         >
-                            We offer top of the line, fine-tuned and a wide
-                            range of Video Editing services, that allow you to
-                            choose and customize your Video Post-Production
-                            project. Besides that, We offer Fast Turnaround
-                            time, Guaranteed quality every time, Very
-                            Competitive price and a FREE TRIAL.
+                            {{ section?.reliable_description }}
                         </p>
                     </div>
                     <div
@@ -607,7 +464,7 @@ export default {
                                 muted="muted"
                                 autoplay=""
                                 poster="https://res.cloudinary.com/dnroxwdfm/video/upload/c_limit,h_400,w_700/v1//videos/black-dress-model_ntzewo.jpg"
-                                src="https://res.cloudinary.com/dnroxwdfm/video/upload/q_auto/f_auto:video/v1//videos/black-dress-model_ntzewo?_s=vp-1.11.1"
+                                :src="section?.reliable_image"
                             ></video>
                         </div>
                     </div>
@@ -628,9 +485,7 @@ export default {
                                 <p
                                     class="text-sm !leading-6 my-5 servicetext md:text-lg lg:!leading-7 mx-auto max-w-3xl"
                                 >
-                                    We convert your raw footage of Model video
-                                    into an eye-catching video with perfection
-                                    that increases the engagement of its viewer.
+                                    {{ section?.product_retouch_description_1 }}
                                 </p>
                                 <div>
                                     <a
@@ -795,10 +650,7 @@ export default {
                                 <p
                                     class="text-sm !leading-6 servicetext my-5 md:text-lg lg:!leading-7 mx-auto max-w-3xl"
                                 >
-                                    A short clip with a long lasting impression
-                                    which increases the sales by a significant
-                                    percentage is what you should expect from
-                                    our video editing service.
+                                    {{ section?.product_retouch_description_2 }}
                                 </p>
                                 <div>
                                     <a

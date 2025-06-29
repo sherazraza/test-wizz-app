@@ -7,6 +7,10 @@ export default {
     components: {
         MainLayout, // ✅ Register here
     },
+    props: {
+        section: Object,
+        works: Array,
+    },
 };
 </script>
 
@@ -15,7 +19,7 @@ export default {
         <div class="flex flex-col justify-between">
             <main>
                 <div class="flex flex-col">
-                    <div class="items-center px-4 lg:flex lg:h-[90vh] lg:px-0">
+                    <div class="items-center lg:flex lg:h-[90vh] lg:px-0">
                         <div class="flex-1">
                             <div
                                 class="space-md col-span-1 mx-auto mt-10 max-w-md lg:text-start"
@@ -28,11 +32,7 @@ export default {
                                     ><span class="text-brand">CGI</span>
                                 </h1>
                                 <p class="my-3 servicetext">
-                                    bZm Graphics delivers ready to use
-                                    comprehensive solutions for e-commerce and
-                                    product 3D &amp; CGI that blend effective
-                                    design with the latest technologies. We help
-                                    bring Your Idea Into a Reality
+                                    {{ section?.main_description }}
                                 </p>
                                 <div class="py-10">
                                     <a
@@ -86,12 +86,11 @@ export default {
                         >
                             <div>
                                 <div class="view3d-wrapper">
-                                    <canvas
-                                        class="w-full h-[350px] w-full lg:h-[100vh]"
-                                        width="948"
-                                        height="552"
-                                        style="cursor: grab"
-                                    ></canvas>
+                                    <img
+                                        :src="section?.main_image"
+                                        style="width: 100%; height: 630px"
+                                        alt=""
+                                    />
                                     <div
                                         class="view3d-annotation-wrapper"
                                     ></div>
@@ -137,11 +136,7 @@ export default {
                                 <p
                                     class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7"
                                 >
-                                    When selling online, specially in a
-                                    marketplace the competition is quite high.
-                                    We can help you to be top of the list with
-                                    our photo editing skills. We have a team of
-                                    250+ photo editors always ready to help you.
+                                    |{{ section?.levelup_3d_description }}
                                 </p>
                             </div>
                             <div class="space-y-6">
@@ -153,12 +148,7 @@ export default {
                                 <p
                                     class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7"
                                 >
-                                    Product video provides a great online
-                                    shopping experience for the buyers. Our
-                                    video editing include Combining Clips,
-                                    Sizing, Cropping, White Balance, Color
-                                    Correction, Text Overlay and more to make
-                                    your video stand out.
+                                    {{ section?.levelup_cgi_description }}
                                 </p>
                             </div>
                         </div>
@@ -166,7 +156,7 @@ export default {
                 </div>
 
                 <div>
-                    <div class="bg-color-11 my-5">
+                    <div class="bg-color-11 py-5">
                         <div
                             class="wrapper-container space-md flex flex-col items-center justify-center !pt-0 text-center"
                         >
@@ -181,11 +171,7 @@ export default {
                             <p
                                 class="text-sm !leading-6 servicetext mt-5 md:text-lg lg:!leading-7 mx-auto max-w-2xl"
                             >
-                                Creating 3D/CGI product animations is an
-                                effective method for quickly conveying detailed
-                                product information and evoking emotions in
-                                viewers, ultimately influencing their purchasing
-                                decisions. Emphasizing emotive presentations
+                                {{ section?.crafting_description }}
                             </p>
                         </div>
                     </div>
@@ -287,11 +273,7 @@ export default {
                             <p
                                 class="text-sm !leading-6 servicetext my-5 md:text-lg lg:!leading-7 lg:text-start"
                             >
-                                3D product models for eCommerce significantly
-                                increase customer engagement by providing a more
-                                interactive and immersive shopping experience.
-                                Allow your customers to fully explore products
-                                from every angles.
+                                {{ section?.amazing_description }}
                             </p>
                             <div class="lg:mx-0">
                                 <a
@@ -368,7 +350,7 @@ export default {
                                     class=""
                                     style="color: transparent"
                                     sizes="(max-width: 768px) 50%, 33%"
-                                    src="https://www.bzmgraphics.com/_next/image?url=%2Fimages%2Fcgi%2Fbefore.jpg&w=1920&q=75"
+                                    :src="section?.amazing_back_image"
                                 />
                                 <div
                                     style="
@@ -394,7 +376,7 @@ export default {
                                         class=""
                                         style="color: transparent"
                                         sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=%2Fimages%2Fcgi%2Fafter.jpg&w=1920&q=75"
+                                        :src="section?.amazing_front_image"
                                     />
                                 </div>
                                 <button
@@ -531,22 +513,19 @@ export default {
                         <p
                             class="text-sm !leading-6 servicetext my-3 md:text-lg lg:!leading-7 mx-auto max-w-2xl"
                         >
-                            Simplify the process of building customer trust by
-                            using the our product review app to gather authentic
-                            reviews from multiple platforms, providing valuable
-                            social proof!
+                            {{ section?.motion_description }}
                         </p>
                     </div>
                     <div>
                         <div>
                             <div class="view3d-wrapper">
-                                <canvas
+                                <img
+                                    :src="section?.motion_image"
                                     class="w-full h-auto bg-black/10 lg:h-[650px]"
                                     width="1657"
                                     height="975"
-                                    style="cursor: grab"
-                                ></canvas>
-                                <div class="view3d-annotation-wrapper"></div>
+                                />
+                                <!-- <div class="view3d-annotation-wrapper"></div> -->
                             </div>
                         </div>
                     </div>
@@ -566,25 +545,22 @@ export default {
                         class="grid grid-cols-1 py-5 gap-x-10 lg:grid-cols-2 lg:gap-10"
                     >
                         <div
+                            v-for="(work, index) in works"
+                            :key="index"
                             class="col-span-1 flex flex-col items-center gap-5 lg:flex-row"
                         >
                             <div class="space-sm flex-1">
                                 <div>
                                     <h3 class="text-2xl font-semibold">
-                                        <span class="green-line"
-                                            >Material Assets</span
-                                        >
+                                        <span class="green-line">{{
+                                            work.title
+                                        }}</span>
                                     </h3>
                                 </div>
                                 <p
                                     class="text-sm !leading-6 my-3 servicetext md:text-lg lg:!leading-7"
                                 >
-                                    In the first step of 3D modeling and CGI,
-                                    designers gather material assets like
-                                    textures and shaders to enhance realism.
-                                    These assets can be sourced from libraries
-                                    or created from scratch. Choosing the right
-                                    materials is crucial for the final look.
+                                    {{ work.description }}
                                 </p>
                             </div>
                             <div class="relative h-[250px] w-full flex-1">
@@ -609,138 +585,6 @@ export default {
                                 />
                             </div>
                         </div>
-                        <div
-                            class="col-span-1 flex flex-col items-center gap-5 lg:flex-row"
-                        >
-                            <div class="space-sm flex-1">
-                                <div>
-                                    <h3 class="text-2xl font-semibold">
-                                        <span class="green-line"
-                                            >Components</span
-                                        >
-                                    </h3>
-                                </div>
-                                <p
-                                    class="text-sm !leading-6 servicetext my-3 md:text-lg lg:!leading-7"
-                                >
-                                    In this stage, designers use pre-built
-                                    elements like polygons and curves to
-                                    construct 3D models in their chosen
-                                    software. They manipulate these components
-                                    to create desired shapes, sometimes
-                                    importing pre-designed assets to speed up
-                                    the process.
-                                </p>
-                            </div>
-                            <div class="relative h-[250px] w-full flex-1">
-                                <img
-                                    alt="bZm Image"
-                                    draggable="false"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-nimg="fill"
-                                    class="bg-gray-100 object-contain"
-                                    style="
-                                        position: absolute;
-                                        height: 100%;
-                                        width: 100%;
-                                        left: 0;
-                                        top: 0;
-                                        right: 0;
-                                        bottom: 0;
-                                        color: transparent;
-                                    "
-                                    src="https://www.bzmgraphics.com/images/how-it-works/2.svg"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            class="col-span-1 flex flex-col items-center gap-5 lg:flex-row"
-                        >
-                            <div class="space-sm flex-1">
-                                <div>
-                                    <h3 class="text-2xl font-semibold">
-                                        <span class="green-line"
-                                            >3D Modeling &amp; Booleans</span
-                                        >
-                                    </h3>
-                                </div>
-                                <p
-                                    class="text-sm !leading-6 servicetext my-3 md:text-lg lg:!leading-7"
-                                >
-                                    In this step, designers sculpt and refine 3D
-                                    models using techniques like extrusion,
-                                    sculpting, and polygonal modeling, as well
-                                    as Boolean operations to combine or subtract
-                                    shapes for intricate detail.
-                                </p>
-                            </div>
-                            <div class="relative h-[250px] w-full flex-1">
-                                <img
-                                    alt="bZm Image"
-                                    draggable="false"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-nimg="fill"
-                                    class="bg-gray-100 object-contain"
-                                    style="
-                                        position: absolute;
-                                        height: 100%;
-                                        width: 100%;
-                                        left: 0;
-                                        top: 0;
-                                        right: 0;
-                                        bottom: 0;
-                                        color: transparent;
-                                    "
-                                    src="https://www.bzmgraphics.com/images/how-it-works/3.svg"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            class="col-span-1 flex flex-col items-center gap-5 lg:flex-row"
-                        >
-                            <div class="space-sm flex-1">
-                                <div>
-                                    <h3 class="text-2xl font-semibold">
-                                        <span class="green-line"
-                                            >Image, Video, and 3D Exports</span
-                                        >
-                                    </h3>
-                                </div>
-                                <p
-                                    class="text-sm !leading-6 servicetext my-3 md:text-lg lg:!leading-7"
-                                >
-                                    Once the 3D model is finished, designers
-                                    export it in various formats for different
-                                    purposes like still renders, animations, or
-                                    further editing. Settings are adjusted based
-                                    on project requirements, and the assets are
-                                    delivered to clients or used in production.
-                                </p>
-                            </div>
-                            <div class="relative h-[250px] w-full flex-1">
-                                <img
-                                    alt="bZm Image"
-                                    draggable="false"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-nimg="fill"
-                                    class="bg-gray-100 object-contain"
-                                    style="
-                                        position: absolute;
-                                        height: 100%;
-                                        width: 100%;
-                                        left: 0;
-                                        top: 0;
-                                        right: 0;
-                                        bottom: 0;
-                                        color: transparent;
-                                    "
-                                    src="https://www.bzmgraphics.com/images/how-it-works/4.svg"
-                                />
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -760,24 +604,19 @@ export default {
                         <p
                             class="text-sm !leading-6 servicetext md:text-lg lg:!leading-7 text-center !text-white lg:ml-[25%] text-lg-start"
                         >
-                            We offer top of the line, fine-tuned and a wide
-                            range of Video Editing services, that allow you to
-                            choose and customize your Video Post-Production
-                            project. Besides that, We offer Fast Turnaround
-                            time, Guaranteed quality every time, Very
-                            Competitive price and a FREE TRIAL.
+                            {{ section?.reliable_description }}
                         </p>
                     </div>
                     <div>
                         <div>
                             <div class="view3d-wrapper">
-                                <canvas
+                                <img
+                                    :src="section?.reliable_image"
                                     class="w-full h-auto bg-black/10 lg:h-[700px]"
                                     width="948"
                                     height="1050"
                                     style="cursor: grab"
-                                ></canvas>
-                                <div class="view3d-annotation-wrapper"></div>
+                                />
                             </div>
                         </div>
                     </div>

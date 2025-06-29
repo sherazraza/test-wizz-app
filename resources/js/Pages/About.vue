@@ -1,11 +1,24 @@
 <script>
 import LogoSlider from "@/Components/LogoSlider.vue";
+import TeamSlider from "@/Components/TeamSlider.vue";
 import MainLayout from "../Layouts/MainLayout.vue";
 
 export default {
     name: "About",
     components: {
         MainLayout, // ✅ Register here
+        LogoSlider,
+        TeamSlider,
+    },
+
+    props: {
+        teams: Array,
+
+        descriptions: Array,
+
+        section: Object,
+        home: Object,
+        memb: Object,
     },
 };
 </script>
@@ -73,19 +86,7 @@ export default {
                             <p
                                 class="undefined servicetext lg:text-base text-2xl font-light"
                             >
-                                bZm Graphics Ltd. is a Visual Content Retouching
-                                Company for E-commerce, Studios and Brands with
-                                250+ expert Photo Retouchers and Video Editors
-                                supporting leading E-commerce, Brands, Retailers
-                                and Photo Studios Globally since 2015.
-                            </p>
-                            <p
-                                class="mt-4 lg:text-base servicetext text-sm font-light"
-                            >
-                                bZm Graphics is also a trustworthy name for
-                                Photo Post-Production and Product Video Editing
-                                in most industries including FMCG, Automotive,
-                                Fashion and Advertising.
+                                {{ section?.who_description }}
                             </p>
                         </div>
                         <div>
@@ -116,8 +117,7 @@ export default {
                                 <p
                                     class="text-xl font-medium italic 2xl:text-3xl"
                                 >
-                                    Quality is never an accident; it is always
-                                    the result of intelligent effort.
+                                    {{ section?.who_quote }}
                                 </p>
                             </div>
                             <div class="relative mt-4 h-[85px] w-[180px]">
@@ -129,7 +129,7 @@ export default {
                                     data-nimg="fill"
                                     class=""
                                     sizes="(max-width: 768px) 50%, 33%"
-                                    src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fsignature-png%2Fnguy-ecnh-nguyen-van-binh-signature-png-5.png&w=1920&q=75"
+                                    :src="section?.who_image"
                                     style="
                                         position: absolute;
                                         height: 100%;
@@ -142,6 +142,11 @@ export default {
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <LogoSlider :logos="section?.who_images" />
+                </div>
+
                 <div class="container">
                     <div
                         class="wrapper-container flex w-full flex-col space-y-8 py-10 text-center lg:py-20 !pt-0"
@@ -160,179 +165,8 @@ export default {
                             We help Create engaging &amp; high-performing visual
                             content for eCommerce and Brands.
                         </p>
-                        <div class="lg:mx-auto lg:max-w-7xl">
-                            <div
-                                class="grid grid-cols-2 gap-x-10 gap-y-5 md:grid-cols-4"
-                            >
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711965534%2Fimages%2Fbzm-clients%2Fhudsons-bay.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711965535%2Fimages%2Fbzm-clients%2Fsaks-fifth-avenue.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087629%2Fimages%2Fbzm-clients%2Flord-taylor.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087621%2Fimages%2Fbzm-clients%2Fjr-dunn.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087621%2Fimages%2Fbzm-clients%2Fgindi-photography.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711965535%2Fimages%2Fbzm-clients%2Fthredup.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087624%2Fimages%2Fbzm-clients%2Fhome-outfitters.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                                <div
-                                    class="relative mx-auto h-[80px] w-full transition duration-300 ease-in-out hover:opacity-100 lg:h-[90px] lg:w-[250px] lg:opacity-40"
-                                >
-                                    <img
-                                        alt="bZm Image"
-                                        draggable="false"
-                                        loading="lazy"
-                                        decoding="async"
-                                        data-nimg="fill"
-                                        class="object-contain object-center"
-                                        sizes="(max-width: 768px) 50%, 33%"
-                                        src="https://www.bzmgraphics.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdnroxwdfm%2Fimage%2Fupload%2Fv1711087625%2Fimages%2Fbzm-clients%2Fa-plus-creative.png&w=1920&q=75"
-                                        style="
-                                            position: absolute;
-                                            height: 100%;
-                                            width: 100%;
-                                            inset: 0px;
-                                            color: transparent;
-                                        "
-                                    />
-                                </div>
-                            </div>
+                        <div class="s">
+                            <LogoSlider :logos="home?.client_images" />
                         </div>
                     </div>
                 </div>
@@ -354,7 +188,7 @@ export default {
                                 data-nimg="fill"
                                 class="object-cover"
                                 sizes="(max-width: 768px) 50%, 33%"
-                                src="https://www.bzmgraphics.com/_next/image?url=%2Fabout%2Fstarted-banner.jpg&w=1920&q=75"
+                                :src="section?.how_started_image"
                                 style="
                                     position: absolute;
                                     height: 100%;
@@ -375,24 +209,7 @@ export default {
                                 <p
                                     class="undefined servicetext lg:text-base text-sm font-light"
                                 >
-                                    In 2015, bZm Graphics Limited was a small
-                                    photo editing company that started their
-                                    journey with just 4 editors. Despite their
-                                    humble beginnings, they were determined to
-                                    provide high-quality photo editing services
-                                    to businesses of all sizes. With hard work,
-                                    dedication, and a commitment to excellence,
-                                    they began to grow their client base and
-                                    reputation in the industry.
-                                </p>
-                                <p
-                                    class="mt-4 servicetext lg:text-base text-sm font-light"
-                                >
-                                    bZm Graphics Limited looks forward to
-                                    continued growth and success in the years to
-                                    come, and they remain committed to providing
-                                    the highest level of service to their
-                                    clients.
+                                    {{ section?.how_started_description }}
                                 </p>
                             </div>
                         </div>
@@ -523,30 +340,7 @@ export default {
                             <p
                                 class="text-justify servicetext lg:text-base text-sm font-light"
                             >
-                                With years of experience working with multiple
-                                areas of expertise, we have honed our skills to
-                                provide a wide range of services. Our expert
-                                services include everything from basic
-                                retouching to more complex tasks such as
-                                background removal, shadow masking, color
-                                correction, image masking, and designing as per
-                                client's demands. We use the latest technology
-                                and techniques to deliver high-quality results
-                                that meet and exceed our client's expectations.
-                            </p>
-                            <p
-                                class="text-justify servicetext mt-6 lg:text-base text-sm font-light"
-                            >
-                                At bZm Graphics Limited, we understand that
-                                every client's needs are unique, and we are
-                                dedicated to providing customized solutions that
-                                meet those needs. We work closely with our
-                                clients to understand their goals and vision,
-                                ensuring that we deliver a finished product that
-                                aligns with their expectations. Our portfolio
-                                showcases our ability to provide stunning visual
-                                solutions that communicate our client's message
-                                and resonate with their audience.
+                                {{ section?.together_description }}
                             </p>
                         </div>
                         <div class="flex gap-5 h-fit">
@@ -559,7 +353,7 @@ export default {
                                     data-nimg="fill"
                                     class="rounded-full object-cover"
                                     sizes="(max-width: 768px) 50%, 33%"
-                                    src="https://www.bzmgraphics.com/_next/image?url=%2Fceo_1.3.png&w=1920&q=75"
+                                    :src="memb?.image"
                                     style="
                                         position: absolute;
                                         height: 100%;
@@ -570,14 +364,14 @@ export default {
                                 />
                             </div>
                             <div class="flex flex-col justify-center">
-                                <p class="font-semibold">Ainul Bashar</p>
-                                <p class="text-sm">CEO</p>
+                                <p class="font-semibold">{{ memb?.name }}</p>
+                                <p class="text-sm uppercase">
+                                    {{ memb?.designation }}
+                                </p>
                             </div>
                         </div>
                         <p class="2xl:text-3xl servicetext text-2xl italic">
-                            Our goal is to provide high-quality photo editing
-                            services that enhance the visual appeal of
-                            e-commerce products and drive sales for our clients.
+                            {{ section?.goal_description }}
                         </p>
                     </div>
                     <div class="wrapper-md">
@@ -588,45 +382,17 @@ export default {
                     <div
                         class="fluid-container grid md:grid-cols-3 2xl:gap-20 md:gap-32 gap-5"
                     >
-                        <div>
+                        <div v-for="(des, index) in descriptions" :key="index">
                             <p
                                 class="!font-semibold servicetext text-justify lg:text-base text-sm font-light"
                             >
-                                Bzm Graphics Limited is a company based in
-                                Bangladesh that prides itself on being a
-                                workplace for many people.
+                                {{ des?.description }}
                             </p>
                             <h4
                                 class="text-3xl !leading-tight text-gray-700 lg:text-5xl 2xl:text-7xl undefined"
                             >
-                                250+ <span class="text-brand"></span>
-                            </h4>
-                        </div>
-                        <div>
-                            <p
-                                class="!font-semibold servicetext text-justify lg:text-base text-sm font-light"
-                            >
-                                Bzm Graphics Limited is a company that has
-                                developed a strong network of business partners
-                                around the world.
-                            </p>
-                            <h4
-                                class="text-3xl !leading-tight text-gray-700 lg:text-5xl 2xl:text-7xl undefined"
-                            >
-                                12+ <span class="text-brand"></span>
-                            </h4>
-                        </div>
-                        <div>
-                            <p
-                                class="!font-semibold servicetext text-justify lg:text-base text-sm font-light"
-                            >
-                                bZm Graphics Limited is expecting to grow the
-                                number of editor 500+ by the end of 2023.
-                            </p>
-                            <h4
-                                class="text-3xl !leading-tight text-gray-700 lg:text-5xl 2xl:text-7xl undefined"
-                            >
-                                500+ <span class="text-brand"></span>
+                                {{ des?.number }}+
+                                <span class="text-brand"></span>
                             </h4>
                         </div>
                     </div>
@@ -660,7 +426,7 @@ export default {
                                     target=""
                                     rel="noopener noreferrer"
                                     class="group relative inline-flex w-fit items-center justify-center overflow-hidden py-6 pl-6 pr-12 font-semibold transition-all duration-150 ease-in-out hover:pl-12 hover:pr-6 bg-white text-black"
-                                    href="/book-a-meeting"
+                                    :href="route('contact')"
                                     ><span
                                         class="absolute bottom-0 left-0 h-full w-1 bg-brand transition-all duration-300 ease-in-out group-hover:w-full"
                                     ></span
@@ -752,102 +518,19 @@ export default {
                                 class="w-fit text-2xl !leading-tight text-gray-700 lg:text-3xl 2xl:text-5xl undefined"
                             >
                                 <span>Meet Our</span>
-                                <span class="text-brand">Amazing Team</span>
+                                <span class="text-brand mx-2"
+                                    >Amazing Team</span
+                                >
                             </h2>
                             <p
                                 class="undefined servicetext lg:text-base text-sm font-light"
                             >
-                                We believe that the key to our success is our
-                                team's dedication to providing exceptional
-                                service and support to our clients, and we take
-                                pride in the work that we do.
+                                {{ section?.team_description }}
                             </p>
                         </div>
-                        <div>
-                            <div
-                                class="relative h-[250px] w-[200px] min-w-[200px]"
-                            >
-                                <img
-                                    alt="CEO"
-                                    draggable="false"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-nimg="fill"
-                                    class="rounded-md object-cover"
-                                    sizes="(max-width: 768px) 50%, 33%"
-                                    src="https://www.bzmgraphics.com/_next/image?url=%2Fceo_1.2.png&w=1920&q=75"
-                                    style="
-                                        position: absolute;
-                                        height: 100%;
-                                        width: 100%;
-                                        inset: 0px;
-                                        color: transparent;
-                                    "
-                                />
-                            </div>
-                            <p class="mt-3 text-lg font-semibold">
-                                Ainul Bashar
-                            </p>
-                            <p class="font-medium text-brand">
-                                Co-Founder &amp; CEO
-                            </p>
-                        </div>
-                        <div>
-                            <div
-                                class="relative h-[250px] w-[200px] min-w-[200px]"
-                            >
-                                <img
-                                    alt="CTO"
-                                    draggable="false"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-nimg="fill"
-                                    class="rounded-md object-cover"
-                                    sizes="(max-width: 768px) 50%, 33%"
-                                    src="https://www.bzmgraphics.com/_next/image?url=%2Fcto.png&w=1920&q=75"
-                                    style="
-                                        position: absolute;
-                                        height: 100%;
-                                        width: 100%;
-                                        inset: 0px;
-                                        color: transparent;
-                                    "
-                                />
-                            </div>
-                            <p class="mt-3 text-lg font-semibold">
-                                Md Solaiman Rathik
-                            </p>
-                            <p class="font-medium text-brand">CTO</p>
-                        </div>
-                        <div>
-                            <div
-                                class="relative h-[250px] w-[200px] min-w-[200px]"
-                            >
-                                <img
-                                    alt="CCO"
-                                    draggable="false"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-nimg="fill"
-                                    class="rounded-md object-cover"
-                                    sizes="(max-width: 768px) 50%, 33%"
-                                    src="https://www.bzmgraphics.com/_next/image?url=%2Fcco_1.png&w=1920&q=75"
-                                    style="
-                                        position: absolute;
-                                        height: 100%;
-                                        width: 100%;
-                                        inset: 0px;
-                                        color: transparent;
-                                    "
-                                />
-                            </div>
-                            <p class="mt-3 text-lg font-semibold">
-                                Apel Mahmud Khan
-                            </p>
-                            <p class="font-medium text-brand">
-                                Co-Founder &amp; CCO
-                            </p>
-                        </div>
+                    </div>
+                    <div class="container flex justify-center gap-16 mt-5">
+                        <TeamSlider :items="teams" />
                     </div>
                 </div>
 

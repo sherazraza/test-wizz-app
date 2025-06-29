@@ -15,51 +15,63 @@ class HomeSettingController extends Controller
     }
     public function storeOrUpdate(Request $request)
     {
-        $data = $request->except(['_token']); // avoid including token in DB
+        $home = HomeSetting::first();
+        $data = $request->except(['_token']); // remove token
 
-        // Upload hero section images
+        // --- Hero Images/Videos (1 image + 3 videos) ---
         for ($i = 1; $i <= 4; $i++) {
-            if ($request->hasFile("hero_image_$i")) {
-                $data["hero_image_$i"] = $request->file("hero_image_$i")->store("home/hero", 'public');
+            $field = "hero_image_$i";
+            if ($request->hasFile($field)) {
+                $data[$field] = $request->file($field)->store("home/hero", 'public');
+            } elseif ($home && $home->$field) {
+                $data[$field] = $home->$field; // retain old value
             }
         }
 
-        // Upload client section images
+        // --- Client Images (multiple) ---
         if ($request->hasFile('client_images')) {
             $clientImages = [];
             foreach ($request->file('client_images') as $img) {
                 $clientImages[] = $img->store('home/client', 'public');
             }
             $data['client_images'] = json_encode($clientImages);
+        } elseif ($home && $home->client_images) {
+            $data['client_images'] = $home->client_images;
         }
 
-        // Upload review image
+        // --- Review Image ---
         if ($request->hasFile('review_image')) {
             $data['review_image'] = $request->file('review_image')->store('home/reviews', 'public');
+        } elseif ($home && $home->review_image) {
+            $data['review_image'] = $home->review_image;
         }
 
-        // Upload company logo
+        // --- Company Logo ---
         if ($request->hasFile('company_logo')) {
             $data['company_logo'] = $request->file('company_logo')->store('home/reviews', 'public');
+        } elseif ($home && $home->company_logo) {
+            $data['company_logo'] = $home->company_logo;
         }
 
-        // Upload video editing image
+        // --- Video Editing Image ---
         if ($request->hasFile('video_editing_image')) {
             $data['video_editing_image'] = $request->file('video_editing_image')->store('home/video-editing', 'public');
+        } elseif ($home && $home->video_editing_image) {
+            $data['video_editing_image'] = $home->video_editing_image;
         }
 
-        // Upload CGI videos
+        // --- CGI Videos (multiple) ---
         if ($request->hasFile('cgi_videos')) {
             $cgiVideos = [];
             foreach ($request->file('cgi_videos') as $video) {
                 $cgiVideos[] = $video->store('home/cgi', 'public');
             }
             $data['cgi_videos'] = json_encode($cgiVideos);
+        } elseif ($home && $home->cgi_videos) {
+            $data['cgi_videos'] = $home->cgi_videos;
         }
 
-        // Update or create single home settings entry
-        $home = HomeSetting::first();
-
+        // --- Save / Update ---
         if ($home) {
             $home->update($data);
         } else {

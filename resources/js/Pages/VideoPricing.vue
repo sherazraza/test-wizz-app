@@ -8,6 +8,10 @@ export default {
     components: {
         MainLayout, // ✅ Register here
     },
+    props: {
+        pricing: Object,
+        packages: Array,
+    },
 };
 </script>
 
@@ -59,21 +63,21 @@ export default {
                     <p
                         class="fs-4 my-5 leading-7 md:text-lg lg:!leading-7 mx-auto max-w-2xl"
                     >
-                        We offer affordable video editing services that won't
-                        compromise quality. We make high-quality editing
-                        possible within your budget. For a custom package,
-                        simply contact us or try our free trial! We'll provide a
-                        personalized quote to fit your budget.
+                        {{ pricing?.description }}
                     </p>
                 </div>
                 <div
                     class="grid grid-cols-1 mt-5 gap-6 md:grid-cols-2 lg:grid-cols-3"
                 >
                     <div
+                        v-for="(service, index) in packages"
+                        :key="index"
                         class="h-min text-center shadow transition hover:shadow-lg"
                     >
                         <div class="bg-brand py-3">
-                            <h2 class="fs-4 font-bold text-white">BASIC</h2>
+                            <h2 class="fs-4 font-bold text-white">
+                                {{ service.package_name }}
+                            </h2>
                             <p class="text-base font-semibold">
                                 Starting from <span class="font-bold">*</span>
                             </p>
@@ -82,321 +86,23 @@ export default {
                             <h3
                                 class="text-2xl font-semibold leading-tight text-brand lg:text-3xl"
                             >
-                                $<span>4.00</span>
+                                $<span>{{ service.starting_price }}</span>
                             </h3>
                         </div>
                         <div class="px-8 py-4 text-start lg:px-16">
                             <div>
                                 <ul class="space-sm list-disc pl-8">
                                     <li
+                                        v-for="(item, idx) in service.services"
+                                        :key="idx"
                                         class="text-[14px] leading-7 md:text-lg md:!leading-7"
                                     >
-                                        Sizing
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Cropping
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        White Balance/Temperature Adjustment
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Skin Redness Removal
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Adding Video Transitions (Fade-in,
-                                        Fade-outs, Fade to logo)
+                                        {{ item }}
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="pb-8 pt-4">
-                            <a
-                                target=""
-                                rel="noopener noreferrer"
-                                class="group relative inline-flex w-fit items-center justify-center overflow-hidden py-6 pl-6 pr-12 font-semibold transition-all duration-150 ease-in-out hover:pl-12 hover:pr-6 bg-black text-white"
-                                href="https://upload.bzmgraphics.com/sign-up"
-                                ><span
-                                    class="absolute bottom-0 left-0 h-full w-1 bg-brand transition-all duration-300 ease-in-out group-hover:w-full"
-                                ></span
-                                ><span
-                                    class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12"
-                                    ><svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                        data-slot="icon"
-                                        class="h-6 w-6"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                            clip-rule="evenodd"
-                                        ></path></svg></span
-                                ><span
-                                    class="absolute left-0 -translate-x-12 pl-2.5 duration-200 ease-out group-hover:translate-x-0"
-                                    ><svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                        data-slot="icon"
-                                        class="h-6 w-6"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                            clip-rule="evenodd"
-                                        ></path></svg></span
-                                ><span
-                                    class="relative uppercase transition-colors duration-200 ease-in-out"
-                                    >Free Trial</span
-                                ></a
-                            >
-                        </div>
-                    </div>
-                    <div
-                        class="h-min text-center shadow transition hover:shadow-lg"
-                    >
-                        <div class="bg-brand py-3">
-                            <h2
-                                class="text-xl font-bold leading-tight text-white lg:text-2xl"
-                            >
-                                INTERMEDIATE
-                            </h2>
-                            <p class="text-base font-semibold lg:text-lg">
-                                Starting from <span class="font-bold">*</span>
-                            </p>
-                        </div>
-                        <div class="border-b py-3">
-                            <h3
-                                class="text-2xl font-semibold leading-tight text-brand lg:text-3xl"
-                            >
-                                $<span>8.49</span>
-                            </h3>
-                        </div>
-                        <div class="px-8 py-4 text-start lg:px-16">
-                            <div>
-                                <ul class="space-sm list-disc pl-8">
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Combining Clips
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Sizing
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Cropping
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Adjusting Video Speed/Frame Rate
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        White Balance/Temperature Adjustment
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Background Knockout
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Basic Color Correction (Brightness,
-                                        Contrast Adjustment)
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Adding Video Transitions (Fade-in,
-                                        Fade-outs, Fade to logo)
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Logo Insert
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Audio Insert
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="pb-8 pt-4">
-                            <a
-                                target=""
-                                rel="noopener noreferrer"
-                                class="group relative inline-flex w-fit items-center justify-center overflow-hidden py-6 pl-6 pr-12 font-semibold transition-all duration-150 ease-in-out hover:pl-12 hover:pr-6 bg-black text-white"
-                                href="https://upload.bzmgraphics.com/sign-up"
-                                ><span
-                                    class="absolute bottom-0 left-0 h-full w-1 bg-brand transition-all duration-300 ease-in-out group-hover:w-full"
-                                ></span
-                                ><span
-                                    class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12"
-                                    ><svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                        data-slot="icon"
-                                        class="h-6 w-6"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                            clip-rule="evenodd"
-                                        ></path></svg></span
-                                ><span
-                                    class="absolute left-0 -translate-x-12 pl-2.5 duration-200 ease-out group-hover:translate-x-0"
-                                    ><svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                        data-slot="icon"
-                                        class="h-6 w-6"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                            clip-rule="evenodd"
-                                        ></path></svg></span
-                                ><span
-                                    class="relative uppercase transition-colors duration-200 ease-in-out"
-                                    >Free Trial</span
-                                ></a
-                            >
-                        </div>
-                    </div>
-                    <div
-                        class="h-min text-center shadow transition hover:shadow-lg"
-                    >
-                        <div class="bg-brand py-3">
-                            <h2
-                                class="text-xl font-bold leading-tight text-white lg:text-2xl"
-                            >
-                                ADVANCED
-                            </h2>
-                            <p class="text-base font-semibold lg:text-lg">
-                                Starting from <span class="font-bold">*</span>
-                            </p>
-                        </div>
-                        <div class="border-b py-3">
-                            <h3
-                                class="text-2xl font-semibold leading-tight text-brand lg:text-3xl"
-                            >
-                                $<span>10.49</span>
-                            </h3>
-                        </div>
-                        <div class="px-8 py-4 text-start lg:px-16">
-                            <div>
-                                <ul class="space-sm list-disc pl-8">
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Sizing
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Cropping
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Padding
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Adjusting Video Speed/Frame Rate
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        White Balance/Temperature Adjustment
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Background Knockout
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Rotoscopy
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Compositing
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Text Overlay
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Title Animation
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Chroma Key
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Advanced Color Correction (Brightness,
-                                        Contrast Adjustment, and Match to
-                                        Reference)
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Hair &amp; Skin Color Correction
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Adding Video Transitions (Fade-in,
-                                        Fade-outs, Fade to logo)
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Logo Insert
-                                    </li>
-                                    <li
-                                        class="text-[14px] leading-7 md:text-lg md:!leading-7"
-                                    >
-                                        Audio Insert
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="pb-8 pt-4 mb-4">
                             <a
                                 target=""
                                 rel="noopener noreferrer"

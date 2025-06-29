@@ -6,7 +6,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeSettingController;
 use App\Http\Controllers\ImagePricingController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoEditingController;
 use App\Http\Controllers\VideoPricingController;
 use Illuminate\Foundation\Application;
@@ -39,6 +41,9 @@ Route::get('/terms-conditions', [HomeController::class, 'termsconditions'])->nam
 Route::get('/privacy-policy', [HomeController::class, 'privacypolicy'])->name('privacypolicy');
 Route::get('/cookie-policy', [HomeController::class, 'cookiepolicy'])->name('cookiepolicy');
 Route::get('/refund-policy', [HomeController::class, 'refundpolicy'])->name('refundpolicy');
+Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('user.portfolio');
+
+Route::get('user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 
 Route::get('/yes', function () {
     return Inertia::render('Welcome', [
@@ -77,9 +82,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         Route::get('categories', [AdminController::class, 'categories'])->name('categories');
+
+        Route::post('/category/store', [AdminController::class, 'storeCat'])->name('category.store');
+
+        Route::put('/categories/{id}', [AdminController::class, 'updateCat'])->name('category.update');
+
         Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 
         Route::get('home', [HomeSettingController::class, 'home'])->name('home');
+        Route::get('portfolio', [PortfolioController::class, 'portfolio'])->name('portfolio');
+        Route::get('portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
+        Route::get('portfolio/delete/{id}', [PortfolioController::class, 'delete'])->name('portfolio.delete');
+        Route::post('portfolio/update/{id}', [PortfolioController::class, 'update'])->name('update');
+        Route::get('allportfolios', [PortfolioController::class, 'index'])->name('allportfolios');
+        Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolio.store');
         Route::get('videoediting', [VideoEditingController::class, 'videoediting'])->name('videoediting');
         Route::post('/video-editing/save', [VideoEditingController::class, 'store'])->name('video.editing.save');
         Route::get('3d-cgi-service', [AdminController::class, 'works'])->name('works');
